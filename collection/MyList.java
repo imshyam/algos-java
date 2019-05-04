@@ -3,16 +3,17 @@ import java.util.Arrays;
 /**
  * MyList
  */
-class MyList {
+class MyList<T> {
 
-  private int[] arr;
+  private int DEFAULT_SIZE = 5;
+  private Object[] arr;
   private int size;
   MyList() {
-    arr = new int[5];
+    arr = new Object[DEFAULT_SIZE];
     size = 0;
   }
 
-  void add(int t) {
+  void add(T t) {
     if (size == arr.length) {
       resize(10);
     }
@@ -36,11 +37,12 @@ class MyList {
     arr = Arrays.copyOf(arr, size + addSize);
   }
 
-  int get(int i) throws IndexOutOfBoundsException {
+  @SuppressWarnings("unchecked")
+  T get(int i) throws IndexOutOfBoundsException {
     if (i >= size) {
       throw new IndexOutOfBoundsException("Index " + i + " Out of bound");
     }
-    return arr[i];
+    return (T) arr[i];
   }
 
   int size() {
@@ -51,7 +53,7 @@ class MyList {
 
 class ListTest {
   public static void main(String[] args) {
-    MyList list = new MyList();
+    MyList<Integer> list = new MyList<>();
     list.add(2);
     list.add(3);
     list.add(4);
