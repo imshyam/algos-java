@@ -25,11 +25,11 @@ class Trie {
       TrieNode node = current.children.get(ch);
       if (node == null) {
         node = new TrieNode();
-        node.children.put(ch, node);
+        current.children.put(ch, node);
       }
       current = node;
     }
-    current.endOfWorld = false;
+    current.endOfWorld = true;
   }
 
   boolean search(String word) {
@@ -45,7 +45,7 @@ class Trie {
     return current.endOfWorld;
   }
 
-  void delete(TrieNode root, String word) {
+  void delete(String word) {
     delete(root, word, 0);
   }
 
@@ -62,7 +62,7 @@ class Trie {
     if (node == null) {
       return false;
     }
-    boolean shouldDeleteCurrentNode = delete(current, word, index);
+    boolean shouldDeleteCurrentNode = delete(node, word, index + 1);
     if (shouldDeleteCurrentNode) {
       current.children.remove(ch);
       return current.children.size() == 0;
@@ -82,6 +82,8 @@ class TrieTest {
     trie.insert("axe");
     trie.insert("amy");
     System.out.println(trie.search("amy"));
+    System.out.println(trie.search("axe"));
+    trie.delete("axe");
     System.out.println(trie.search("axe"));
   }
 }
