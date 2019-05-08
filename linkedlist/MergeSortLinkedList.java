@@ -36,11 +36,6 @@ class MergeSortLinkedList {
     return slow;
   } 
   static Node merge(Node left, Node right) {
-    System.out.println();
-    print(left);
-    System.out.println();
-    print(right);
-    System.out.println("\n--------------------------");
     if (left == null) {
       return right;
     }
@@ -71,11 +66,18 @@ class MergeSortLinkedList {
   }
   public static void main(String[] args) {
     Node head = new Node(34);
-    insert(head, 22);
-    insert(head, 13);
-    insert(head, 44);
+    insert(head, 422);
+    insert(head, 713);
+    insert(head, 444);
     insert(head, 45);
+    insert(head, 44);
+    insert(head, 405);
+    insert(head, 434);
+    insert(head, 415);
+    insert(head, 144);
+    insert(head, 145);
     print(head);
+    System.out.println("\nSorted: ");
     head = mergeSort(head);
     print(head);
   }
